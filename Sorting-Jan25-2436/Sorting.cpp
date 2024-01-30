@@ -3,6 +3,9 @@
 #include<vector>
 
 #include <algorithm>
+
+#include<iomanip>
+
 using namespace std;
 
 //class Date //do this instead of string if you like 
@@ -21,23 +24,98 @@ public:
 
     Shoe(double sPrice, int cStars, string aDate)
         :shoePrice(sPrice), customerStars(cStars), arrivalDate(aDate)
-    {}
+    {};
+
+    //overload the output operator (<< the "stream insertion operator")
+    friend ostream& operator << (ostream& os, const Shoe& shoeObj);
+    //declares this overloaded operator 
+
+    //overload the LESS THAN operator for shoe objects: 
+    bool operator < (const Shoe& otherShoe)
+    {
+        return (this->customerStars < otherShoe.customerStars);
+    }
 };
+
+//definition of overloaded output operator (<<) for `Shoe` objects: 
+
+ostream& operator << (ostream& os, const Shoe& shoeObj)
+{
+    os << left << setw(10) << shoeObj.shoePrice <<
+        setw(10) << shoeObj.customerStars <<
+        setw(10) << shoeObj.arrivalDate << endl; 
+    return os; 
+}
+
+void printShoeList(vector<Shoe> shoes)
+{
+    for (Shoe& shoeObj : shoes)
+    {
+        cout << shoeObj; 
+    }
+}
+
+
+bool compareShoesByPrice(const Shoe& leftShoe, const Shoe& rightShoe)
+{
+    return (leftShoe.shoePrice < rightShoe.shoePrice);
+}
 
 int main()
 {
+    cout << std::boolalpha;  //displays true instead of 1 and false instead of 0
     
-    Shoe myShoes{ 120.99, 4, "Jan 1, 2023" };
 
+    Shoe myShoes{ 120.99, 4, "Jan 1, 2023" }; //Altra
+    //Shoe herShoes{ 99.99, 1, "Some date" }; 
+    //cout << (myShoes < herShoes) << endl; 
+    //cout << myShoes;
     vector<Shoe> shoeList; 
+
+
     shoeList.push_back(myShoes);
+    //cout << shoeList[0];
+    //cout << shoeList.at(0);
 
-    shoeList.push_back(Shoe{99.45, 3, "Mar 43, 20'120"});
- 
 
-    //std::sort()
-    cout << myShoes.arrivalDate << "\t" << myShoes.customerStars
-        << "\t" << myShoes.shoePrice << endl; 
+
+    shoeList.push_back(Shoe{99.45, 3, "Mar 3, 2020"});
+    shoeList.push_back(Shoe{ 178.60, 2, "April 1, 2022" });
+
+    //cout << "UNSORTED shoe list" << endl;
+    //printShoeList(shoeList);
+    //
+    ////cout << "\n\n\nMain function address: " << main << endl;
+    ////cout << "Compare shoes by price function address: " << compareShoesByPrice << endl;
+    //cout << "\n\n\nshoe list - sorted by price? " << endl;
+    //std::sort(shoeList.begin(), shoeList.end(), compareShoesByPrice); //this is a FUNCTION POINTER
+    //printShoeList(shoeList);
+
+    //cout << "\n\nNow, sorted by popularity (number of \"stars\") \a: " << endl;
+    //std::sort(shoeList.begin(), shoeList.end());
+    //printShoeList(shoeList);
+
+    //a last way to sort class objects by a certain member variable
+    //using "lambda functions" - > HOORAY!
+
+    auto greaterThan5 = [](int a) 
+        {
+            return (a > 5); 
+        }; 
+    vector<int> nums = { 6, 7, 8, -9 };
+
+    cout << std::all_of(nums.begin(), nums.end(), greaterThan5) << endl; //C++ standard library algorithm 
+    
+    std::sort(shoeList.begin(), shoeList.end()
+        []()
+        {
+
+        })
+    //auto a = 5.0f; //doubles occupy DOUBLE the space of floats 
+    //auto a = 'c';
+    //cout << typeid(a).name() << endl; 
+
+    //cout << typeid(thing).name() << endl; 
 
     return 0;
 }
