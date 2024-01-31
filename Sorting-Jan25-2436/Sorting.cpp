@@ -1,10 +1,7 @@
-#include <iostream>
-
-#include<vector>
-
 #include <algorithm>
-
 #include<iomanip>
+#include <iostream>
+#include<vector>
 
 using namespace std;
 
@@ -55,11 +52,18 @@ void printShoeList(vector<Shoe> shoes)
     }
 }
 
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="leftShoe"></param>
+/// <param name="rightShoe"></param>
+/// <returns></returns>
 bool compareShoesByPrice(const Shoe& leftShoe, const Shoe& rightShoe)
 {
     return (leftShoe.shoePrice < rightShoe.shoePrice);
 }
+
+
 
 int main()
 {
@@ -82,8 +86,29 @@ int main()
     shoeList.push_back(Shoe{99.45, 3, "Mar 3, 2020"});
     shoeList.push_back(Shoe{ 178.60, 2, "April 1, 2022" });
 
-    //cout << "UNSORTED shoe list" << endl;
-    //printShoeList(shoeList);
+    cout << "UNSORTED shoe list" << endl;
+    printShoeList(shoeList);
+    
+    std::sort(shoeList.begin(), shoeList.end());
+    cout << "\n\n\nSorted by review: " << endl; 
+    printShoeList(shoeList); 
+
+
+    cout << "\n\nSorted by PRICE: " << endl; 
+    std::sort(shoeList.begin(), shoeList.end(), compareShoesByPrice);
+    printShoeList(shoeList); 
+        //cout << compareShoesByPrice << endl; 
+
+    cout << "\n\nSorted by arrival date " << endl; 
+    std::sort(shoeList.begin(), shoeList.end(),
+        [](Shoe& leftShoe, Shoe& rightShoe) //sortByArrivalDate
+        {
+            return leftShoe.arrivalDate < rightShoe.arrivalDate; 
+        }
+    );
+
+    printShoeList(shoeList);
+
     //
     ////cout << "\n\n\nMain function address: " << main << endl;
     ////cout << "Compare shoes by price function address: " << compareShoesByPrice << endl;
@@ -98,19 +123,24 @@ int main()
     //a last way to sort class objects by a certain member variable
     //using "lambda functions" - > HOORAY!
 
-    auto greaterThan5 = [](int a) 
-        {
-            return (a > 5); 
-        }; 
-    vector<int> nums = { 6, 7, 8, -9 };
+    //auto greaterThan5 = [](int a) 
+    //    {
+    //        return (a > 5); 
+    //    }; 
 
-    cout << std::all_of(nums.begin(), nums.end(), greaterThan5) << endl; //C++ standard library algorithm 
+    //cout << typeid(greaterThan5).name() << endl; 
+    //[]() {}
+    //vector<int> nums = { 6, 7, 8, -9 };
+
+    //cout << std::all_of(nums.begin(), nums.end(), greaterThan5) << endl; //C++ standard library algorithm 
     
-    std::sort(shoeList.begin(), shoeList.end()
-        []()
-        {
+    //std::sort(shoeList.begin(), shoeList.end());
+    
+    
+    //    []()
+    //    {
 
-        })
+    //    })
     //auto a = 5.0f; //doubles occupy DOUBLE the space of floats 
     //auto a = 'c';
     //cout << typeid(a).name() << endl; 
