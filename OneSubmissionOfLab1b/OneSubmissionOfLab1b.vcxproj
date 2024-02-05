@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4b8b7a8b-eaa5-4eca-b137-ed8078a1ac98}</ProjectGuid>
-    <RootNamespace>Jan31WritingOurOwnSortFunction</RootNamespace>
+    <ProjectGuid>{d94b87f6-93ad-4694-bc44-54bdd0af8ccb}</ProjectGuid>
+    <RootNamespace>OneSubmissionOfLab1b</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -104,7 +104,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Jan31-WritingOurOwnSortFunction.cpp" />
+    <ClCompile Include="..\..\..\..\Downloads\Lab1B\Lab1B.cpp" />
+    <ClCompile Include="..\..\..\..\Downloads\Lab1B\MonsterCard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Downloads\Lab1B\MonsterCard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

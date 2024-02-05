@@ -99,13 +99,13 @@ int main()
     printShoeList(shoeList); 
         //cout << compareShoesByPrice << endl; 
 
-    cout << "\n\nSorted by arrival date " << endl; 
-    std::sort(shoeList.begin(), shoeList.end(),
-        [](Shoe& leftShoe, Shoe& rightShoe) //sortByArrivalDate
-        {
-            return leftShoe.arrivalDate < rightShoe.arrivalDate; 
-        }
-    );
+    //cout << "\n\nSorted by arrival date " << endl; 
+    //std::sort(shoeList.begin(), shoeList.end(),
+    //    [](Shoe& leftShoe, Shoe& rightShoe) //sortByArrivalDate
+    //    {
+    //        return leftShoe.arrivalDate < rightShoe.arrivalDate; 
+    //    }
+    //);
 
     printShoeList(shoeList);
 
