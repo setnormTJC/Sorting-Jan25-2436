@@ -40,9 +40,9 @@ int findMin(vector<int> nums)
 
 }
 
-vector<int> out_of_place_sort(vector<int> unsortedNums)
-{
-    vector<int> sortedNums;
+vector<int> out_of_place_sort(vector<int> unsortedNums) //10? elements = N (O(N) - > complexity of seq. search
+{                                                               //binary search O(log(N)) - > BETTER than seq. search 
+    vector<int> sortedNums; //extra space complexity 
     while (!unsortedNums.empty())
     {
         int currentMin = findMin(unsortedNums); //write your own `findMin`
@@ -72,6 +72,7 @@ void nSquaredSort(std::vector<int>& nums, const int N)
 {
     int comparisonCount = 0; 
     int swapCount = 0; 
+
     for (int i = 0; i < N - 1; i++)
     {
         for (int j = i + 1; j < N; j++)
@@ -80,7 +81,7 @@ void nSquaredSort(std::vector<int>& nums, const int N)
 
             if (nums[i] > nums[j])//then swap
             {
-                std::swap(nums[i], nums[j]);
+                std::swap(nums[i], nums[j]); //#include<algorithm>
                 swapCount++; 
 
                 //cout << "\nMid-sorting algorithm: " << endl; 
@@ -91,10 +92,13 @@ void nSquaredSort(std::vector<int>& nums, const int N)
         }
         //cout << "Incrementing i to: " << i + 1 << endl;
     } //end outer for loop 
-    cout << "Total comparison count: " << comparisonCount << endl; 
+    
+    
+    cout << "\n\nTotal comparison count: " << comparisonCount << endl; 
     cout << "Total SWAP count: " << swapCount << endl; 
 
 }
+
 
 
 void measureSortTimeForN(int N)
@@ -110,26 +114,22 @@ void measureSortTimeForN(int N)
 
 int main()
 {
+    
+    vector<int> someNums = generateNRandomInts(10'000);
+    
 
-    vector<int> someNums = generateNRandomInts(100);
-    cout << "BEFORE calling the bubble sort!" << endl; 
-    print(someNums); 
+    cout.imbue(std::locale(""));
 
-    //std:: cout << findMin(someNums) << endl;
-    //vector<int> SORTEDnums = out_of_place_sort(someNums);
-
-    /*vector<int> SORTEDnums = */
-    //cout << "\n\nSorting ...";
-    //std::sort(someNums.begin(), someNums.end());
+    /*generateNRandomInts(10);*/
+    cout << "BEFORE calling the BUBBLE place sort!" << endl; 
+    //print(someNums); 
+ 
     nSquaredSort(someNums, someNums.size());
-
-    //fair
+    //std::sort(someNums.begin(), someNums.end());
 
     cout << "\n\nDone!" << endl; 
-    print(someNums);
+    //print(someNums); 
 
-    
-    //cout << "adfljajsdf;lkajsdf;lkf" << endl; 
     cout << "\n\n";
 
 }
