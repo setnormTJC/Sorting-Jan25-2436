@@ -84,9 +84,9 @@ void nSquaredSort(std::vector<int>& nums, const int N)
                 std::swap(nums[i], nums[j]); //#include<algorithm>
                 swapCount++; 
 
-                //cout << "\nMid-sorting algorithm: " << endl; 
-                //print(nums);//print updated array for visualization:
-                //system("pause");
+                cout << "\nMid-sorting algorithm: " << endl; 
+                print(nums);//print updated array for visualization:
+                system("pause");
 
             }
         }
@@ -115,20 +115,32 @@ void measureSortTimeForN(int N)
 int main()
 {
     
-    vector<int> someNums = generateNRandomInts(10'000);
-    
+    vector<int> vec10K = { 4, 3, 5, 2, 1 };
+    /*generateNRandomInts(100'000)*/;
+    auto copyOfVec10K = vec10K; //careful!
 
-    cout.imbue(std::locale(""));
+    //Timer* tStd = new Timer;  //smart pointers instead? 
+    //std::sort(vec10K.begin(), vec10K.end()); 
+    //delete tStd; 
 
-    /*generateNRandomInts(10);*/
-    cout << "BEFORE calling the BUBBLE place sort!" << endl; 
-    //print(someNums); 
+    //Timer* tBubble = new Timer; 
+    nSquaredSort(copyOfVec10K, copyOfVec10K.size());
+    //delete tBubble; 
+
+
+
+
+    //cout.imbue(std::locale("")); //makes 123456 display with commas (123,456) 
+
+    ///*generateNRandomInts(10);*/
+    //cout << "BEFORE calling the BUBBLE place sort!" << endl; 
+    ////print(someNums); 
  
-    nSquaredSort(someNums, someNums.size());
-    //std::sort(someNums.begin(), someNums.end());
+    //nSquaredSort(someNums, someNums.size());
+    ////std::sort(someNums.begin(), someNums.end());
 
-    cout << "\n\nDone!" << endl; 
-    //print(someNums); 
+    //cout << "\n\nDone!" << endl; 
+    ////print(someNums); 
 
     cout << "\n\n";
 
